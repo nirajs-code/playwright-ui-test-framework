@@ -6,7 +6,10 @@ import { defineConfig, devices } from '@playwright/test';
  */
 import dotenv from 'dotenv';
 import path from 'path';
+import { envConfig } from 'src/config/env.config';
 dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+const authFile = path.resolve(__dirname, 'playwright/.auth/user.json');
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -27,7 +30,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: process.env.override_base_url || 'https://playwright.dev/',
+    baseURL: envConfig.baseUrl,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -37,8 +40,17 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'setup',
+      testMatch: '**/global.setup.ts',
+    },
+
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] , headless: false,},
+      use: { ...devices['Desktop Chrome'], 
+        headless: envConfig.headless === 'true',
+        storageState: authFile
+      },
+      dependencies: ['setup']
     },
 
     // {

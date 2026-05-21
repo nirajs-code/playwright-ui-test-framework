@@ -1,4 +1,4 @@
-import { test, expect } from "../../src/fixtures/base.fixture";
+import { test, expect } from "@fixtures/base.fixture";
 
 test('has title', async ({ homePage }) => {
   await homePage.navigate();
@@ -8,5 +8,5 @@ test('has title', async ({ homePage }) => {
 test('get started link', async ({ homePage, docsPage }) => {
   await homePage.navigate();
   await homePage.clickGetStartedLink();
-  await expect(docsPage.isIntroductionHeadingVisible()).toBe(true);
+  expect(await docsPage.isIntroductionHeadingVisible()).toBe(true);
 });

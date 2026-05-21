@@ -1,0 +1,10 @@
+{
+  "baseUrl": "https://playwright.dev/",
+  "headless": "true",
+  "user": {
+    "email": "user@dev.com"
+  },
+  "admin": {
+    "email": "admin@dev.com"
+  }
+}
