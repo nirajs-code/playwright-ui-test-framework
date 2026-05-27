@@ -21,11 +21,11 @@ type ApiFixtures = {
   postService: PostService;
 };
 
-type factoryFixtures = {
+type dataFixtures = {
   postsFactory: PostsFactory;
 }
 
-export const test = base.extend<PageFixtures & AuthFixtures & ApiFixtures & factoryFixtures>({
+export const test = base.extend<PageFixtures & AuthFixtures & ApiFixtures & dataFixtures>({
   
     homePage: async ({ page }, use) => {
       const homePage = new HomePage(page);

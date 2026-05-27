@@ -10,6 +10,10 @@ class DocsPage extends BasePage {
         return this.page.getByRole('heading', { name: 'Installation' });
     }
 
+    private get docSidebar(): Locator {
+        return this.page.getByRole('navigation', { name: 'Docs sidebar' });
+    }
+
     get pageUrl() : string {
         return 'https://playwright.dev/docs/intro';
     }
@@ -20,6 +24,10 @@ class DocsPage extends BasePage {
 
     async isIntroductionHeadingVisible(): Promise<boolean> {
         return this.introductionHeading.isVisible();
+    }
+
+    async isDocSidebarVisible(): Promise<boolean> {
+        return this.docSidebar.isVisible();
     }
 }
 

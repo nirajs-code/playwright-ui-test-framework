@@ -4,6 +4,7 @@ import { Posts } from "src/type/posts.type";
 import { PostsBuilder } from "../builders/posts.builder";
 
 export class PostsFactory {
+
     private readonly postService: PostService;
     private createdPosts: Posts[] = [];
 
@@ -14,9 +15,16 @@ export class PostsFactory {
     async create(overrides?: Partial<Posts>): Promise<Posts> {
         const payload = new PostsBuilder().build();
         const merged = {...payload, ...overrides};
-        const post = await this.postService.createPost(merged); 
+        const post = await this.postService.createPost(merged);
         this.createdPosts.push(post);
         return post;
+    }
+
+    async createMany(count: number, overrides?: Partial<Posts>): Promise<Posts[]> {
+        const posts = await Promise.all(
+            Array.from( {length: count}, () => this.create(overrides))
+        );
+        return posts;
     }
 
     async cleanup(): Promise<void> {
