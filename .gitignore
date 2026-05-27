@@ -2,9 +2,11 @@
 # Playwright
 node_modules/
 /test-results/
-/playwright-report/
+/target/playwright-report/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
 /.env
 /.claude/skills/playwright-cli/*
+/allure-report/*
+/allure-results/*

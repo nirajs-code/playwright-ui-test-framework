@@ -1,5 +1,6 @@
 {
   "baseUrl": "https://playwright.dev/",
+  "apiUrl": "https://jsonplaceholder.typicode.com",
   "headless": "true",
   "user": {
     "email": "user@dev.com"

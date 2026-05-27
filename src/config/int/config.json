@@ -1,5 +1,6 @@
 {
   "baseUrl": "http://localhost:3000",
+   "apiUrl": "https://api.playwright.dev/",
   "headless": "true",
   "user": {
     "email": "user@dev.com"

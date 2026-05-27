@@ -1,11 +1,11 @@
 import { test, expect } from "@fixtures/base.fixture";
 
-test('has title', async ({ homePage }) => {
+test('has title @smoke', async ({ homePage }) => {
   await homePage.navigate();
   await expect(homePage.currentPage).toHaveTitle(/Playwright/);
 });
 
-test('get started link', async ({ homePage, docsPage }) => {
+test('get started link @regression', async ({ homePage, docsPage }) => {
   await homePage.navigate();
   await homePage.clickGetStartedLink();
   expect(await docsPage.isIntroductionHeadingVisible()).toBe(true);
