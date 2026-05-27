@@ -1,11 +1,9 @@
 import { test as base, expect } from '@playwright/test';
 import { HomePage } from '@pages/home.page';
 import { DocsPage } from '@pages/docs.page';
-import { ApiService } from 'src/services/api.service';
 import { AuthService } from 'src/services/auth.service';
 import { PostService } from 'src/services/post.service';
 import { PostsFactory } from 'src/data/factories/post.factory';
-import { userInfo } from 'node:os';
 
 type PageFixtures = {
   homePage: HomePage;
