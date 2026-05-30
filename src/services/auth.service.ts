@@ -1,8 +1,8 @@
 
 import { APIRequestContext } from '@playwright/test';
 import { ApiService } from './api.service';
-import { LoginResponse } from 'src/type/auth.type';
-import { envConfig } from 'src/config/env.config';
+import { LoginResponse } from '../type/auth.type';
+import { envConfig } from '../config/env.config';
 
 class AuthService extends ApiService {
 

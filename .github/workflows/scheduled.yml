@@ -1,0 +1,43 @@
+name: Nightly Regression
+
+on:
+  schedule:
+    - cron: '0 0 * * *'    # ← midnight every day
+  workflow_dispatch:        # ← manual trigger from GitHub UI
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install browsers
+        run: npx playwright install --with-deps
+
+      - name: Run regression
+        run: npm run test:regression
+        env:
+          ENV: staging
+          USER_PASSWORD: ${{ secrets.STAGING_USER_PASSWORD }}
+          ADMIN_PASSWORD: ${{ secrets.STAGING_ADMIN_PASSWORD }}
+          CI: true
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: regression-results
+          path: playwright-report/
+          retention-days: 30

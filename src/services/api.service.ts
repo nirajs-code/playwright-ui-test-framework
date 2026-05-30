@@ -1,5 +1,5 @@
 import { APIRequestContext } from "@playwright/test";
-import { envConfig } from "src/config/env.config";
+import { envConfig } from "../config/env.config";
 
 class ApiService {
 

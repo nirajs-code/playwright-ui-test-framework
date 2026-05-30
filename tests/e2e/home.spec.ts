@@ -5,8 +5,11 @@ test('has title @smoke', async ({ homePage }) => {
   await expect(homePage.currentPage).toHaveTitle(/Playwright/);
 });
 
-test('get started link @regression', async ({ homePage, docsPage }) => {
+test('get started link @regression, @sanity', async ({ homePage, docsPage }) => {
   await homePage.navigate();
   await homePage.clickGetStartedLink();
   expect(await docsPage.isIntroductionHeadingVisible()).toBe(true);
+  await homePage.clickOnCILinkInSideBar();
+  await homePage.settingUpCiHeadingVisible();
+
 });

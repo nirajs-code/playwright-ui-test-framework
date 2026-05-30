@@ -1,6 +1,6 @@
 import { APIRequestContext } from "@playwright/test";
 import { ApiService } from "./api.service";
-import { Posts } from "src/type/posts.type";
+import { Posts } from "../type/posts.type";
 
 
 export class PostService extends ApiService {

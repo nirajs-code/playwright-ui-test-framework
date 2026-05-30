@@ -13,7 +13,7 @@ export abstract class BasePage {
     }
 
     async navigate(): Promise<void> {
-        await this.currentPage.goto(this.pageUrl);
+        await this.page.goto(this.pageUrl);
         await this.waitforpageload();
     }
 

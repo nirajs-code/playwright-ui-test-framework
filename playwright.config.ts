@@ -6,7 +6,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 import dotenv from 'dotenv';
 import path from 'path';
-import { envConfig } from 'src/config/env.config';
+import { envConfig } from './src/config/env.config';
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const authFile = path.resolve(__dirname, 'playwright/.auth/user.json');
@@ -29,8 +29,9 @@ export default defineConfig({
   reporter: [
     ['list'],
     ['html', { outputFolder: 'target/playwright-report', open: 'never'}],
-    ['json'], 
+    ['json', { outputFile: 'target/results.json' }],
     ['allure-playwright', { outputFolder: 'target/allure-results' }],
+    ...(process.env.CI ? [['github'] as [string]] : []),
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -40,6 +41,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     screenshot: 'on-first-failure',
+    testIdAttribute: 'data-testid',
   },
 
   /* Configure projects for major browsers */

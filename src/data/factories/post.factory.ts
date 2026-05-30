@@ -1,7 +1,7 @@
 import { APIRequestContext } from "@playwright/test";
-import { PostService } from "src/services/post.service";
-import { Posts } from "src/type/posts.type";
 import { PostsBuilder } from "../builders/posts.builder";
+import { PostService } from "../../services/post.service";
+import { Posts } from "../../type/posts.type";
 
 export class PostsFactory {
 

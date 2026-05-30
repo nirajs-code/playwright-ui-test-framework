@@ -9,7 +9,8 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+    - name: checkout
+      uses: actions/checkout@v5
     - uses: actions/setup-node@v5
       with:
         node-version: lts/*
@@ -19,9 +20,21 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
+      env:
+        ENV: staging
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+    - name: Upload Allure results
+      uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: allure-results
+        path: allure-results/
+        retention-days: 30    
+    - name: Re-run failed tests
+      if: failure()    # ← only runs if previous step failed
+      run: playwright test --last-failed    

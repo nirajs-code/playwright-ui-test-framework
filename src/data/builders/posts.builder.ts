@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Posts } from "src/type/posts.type";
+import { Posts } from "../../type/posts.type";
 
 export class PostsBuilder {
 

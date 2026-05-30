@@ -1,9 +1,9 @@
 import { test as base, expect } from '@playwright/test';
 import { HomePage } from '@pages/home.page';
 import { DocsPage } from '@pages/docs.page';
-import { AuthService } from 'src/services/auth.service';
-import { PostService } from 'src/services/post.service';
-import { PostsFactory } from 'src/data/factories/post.factory';
+import { AuthService } from '../services/auth.service';
+import { PostService } from '../services/post.service';
+import { PostsFactory } from '../data/factories/post.factory';
 
 type PageFixtures = {
   homePage: HomePage;
